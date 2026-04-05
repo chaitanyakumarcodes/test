@@ -60,6 +60,7 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
+  .nav-left { display: flex; align-items: center; gap: 2rem; }
   .nav-logo {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
@@ -68,6 +69,7 @@
     letter-spacing: -0.02em;
   }
   .nav-logo span { color: var(--amber); }
+  .nav-center { display: flex; }
   .nav-links { display: flex; gap: 2.5rem; }
   .nav-links a {
     font-family: 'DM Mono', monospace;
@@ -89,6 +91,49 @@
   }
   .nav-links a:hover { color: var(--cyan); }
   .nav-links a:hover::after { width: 100%; }
+  
+  /* Language Toggle */
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+  }
+  .lang-toggle:hover {
+    border-color: var(--cyan);
+    background: rgba(0, 212, 255, 0.08);
+  }
+  .lang-toggle .flag-en {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .lang-toggle .flag-jp {
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+  .lang-toggle.active-en .flag-en {
+    opacity: 1;
+  }
+  .lang-toggle.active-en .flag-jp {
+    opacity: 0.4;
+  }
+  .lang-toggle.active-jp .flag-en {
+    opacity: 0.4;
+  }
+  .lang-toggle.active-jp .flag-jp {
+    opacity: 1;
+  }
+  .lang-toggle .divider {
+    opacity: 0.3;
+    font-size: 0.75rem;
+  }
 
   /* ── HERO ── */
   #hero {
@@ -849,6 +894,9 @@ flex-shrink: 0;
   footer span { color: var(--cyan); }
 
   /* ── ANIMATIONS ── */
+  body {
+    transition: opacity 0.3s ease;
+  }
   .fade-up {
     opacity: 0;
     transform: translateY(30px);
@@ -860,6 +908,8 @@ flex-shrink: 0;
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
+    .lang-toggle { font-size: 0.9rem; padding: 0.3rem 0.5rem; gap: 0.2rem; }
+    .lang-toggle .divider { font-size: 0.65rem; }
     section { padding: 4rem 1.5rem; }
     #hero { padding: 7rem 1.5rem 3rem; }
     .hero-stats { gap: 1.5rem; }
@@ -877,35 +927,42 @@ flex-shrink: 0;
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">CK<span>.</span></div>
-  <div class="nav-links">
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#thinking">Thinking</a>
-    <a href="#experience">Experience</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-left">
+    <div class="nav-logo">CK<span>.</span></div>
   </div>
+  <div class="nav-center">
+    <div class="nav-links">
+      <a href="#projects" data-i18n="nav.projects">Projects</a>
+      <a href="#skills" data-i18n="nav.skills">Skills</a>
+      <a href="#thinking" data-i18n="nav.thinking">Thinking</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+  </div>
+  <button class="lang-toggle" id="langToggle" title="Toggle language">
+    <span class="flag-en">🇬🇧</span>
+    <span class="divider">|</span>
+    <span class="flag-jp">🇯🇵</span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-orb"></div>
   <div class="hero-inner">
-    <div class="hero-tag">AI Engineer</div>
+    <div class="hero-tag" data-i18n="hero.tag">AI Engineer</div>
     <h1 class="hero-name">
-      Chaitanya<br>
-      <span class="line2">Kumar</span>
+      <span data-i18n="hero.name">Chaitanya</span><br>
+      <span class="line2" data-i18n="hero.name_line2">Kumar</span>
     </h1>
-    <p class="hero-role">Building end-to-end intelligent systems</p>
-    <p class="hero-desc">
-      I design and deploy <em>production AI systems</em> — from LLM pipelines and RAG architectures to full-stack ML applications. I don't just use APIs; I understand what happens inside them.
-    </p>
+    <p class="hero-role" data-i18n="hero.role">Building end-to-end intelligent systems</p>
+    <p class="hero-desc" data-i18n="hero.desc">I design and deploy <em data-i18n="hero.desc_em">production AI systems</em> — from LLM pipelines and RAG architectures to full-stack ML applications. I don't just use APIs; I understand what happens inside them.</p>
     <div class="hero-btns">
-    <a href="#projects" class="btn btn-primary">🚀 View Projects</a>
-    <a href="https://github.com/chaitanyakumarcodes" target="_blank" class="btn btn-outline">⌥ GitHub</a>
-    <a href="https://drive.google.com/file/d/1xsSrQMJYIZ9jegcvDGUs7nzvlpq8qqY4/view?usp=sharing" target="_blank" class="btn btn-outline">📄 Resume</a>
-    <a href="mailto:chaitanyakumar160@gmail.com" class="btn btn-outline">✉ Hire Me</a>
+    <a href="#projects" class="btn btn-primary" data-i18n="hero.btn_projects">🚀 View Projects</a>
+    <a href="https://github.com/chaitanyakumarcodes" target="_blank" class="btn btn-outline" data-i18n="hero.btn_github">⌥ GitHub</a>
+    <a href="https://drive.google.com/file/d/1xsSrQMJYIZ9jegcvDGUs7nzvlpq8qqY4/view?usp=sharing" target="_blank" class="btn btn-outline" data-i18n="hero.btn_resume">📄 Resume</a>
+    <a href="mailto:chaitanyakumar160@gmail.com" class="btn btn-outline" data-i18n="hero.btn_hire">✉ Hire Me</a>
     </div>
   </div>
 </section>
@@ -913,14 +970,14 @@ flex-shrink: 0;
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
-    <div class="section-label">Featured Work</div>
-    <h2 class="section-title">Things I've <em>Built</em></h2>
+    <div class="section-label" data-i18n="projects.label">Featured Work</div>
+    <h2 class="section-title" data-i18n="projects.title">Things I've <em data-i18n="projects.title_em">Built</em></h2>
 
     <div class="project-tabs">
-      <button class="tab active" onclick="filterProjects('all')">All Projects</button>
-      <button class="tab" onclick="filterProjects('llm')">LLM / RAG</button>
-      <button class="tab" onclick="filterProjects('fullstack')">Full-Stack</button>
-      <button class="tab" onclick="filterProjects('ml')">ML / CV</button>
+      <button class="tab active" onclick="filterProjects('all')" data-i18n="projects.tab_all">All Projects</button>
+      <button class="tab" onclick="filterProjects('llm')" data-i18n="projects.tab_llm">LLM / RAG</button>
+      <button class="tab" onclick="filterProjects('fullstack')" data-i18n="projects.tab_fullstack">Full-Stack</button>
+      <button class="tab" onclick="filterProjects('ml')" data-i18n="projects.tab_ml">ML / CV</button>
     </div>
 
     <div class="projects-grid">
@@ -929,38 +986,38 @@ flex-shrink: 0;
       <div class="project-card visible fade-up" data-tags="llm fullstack">
         <div class="project-card-inner">
           <div class="project-header">
-            <span class="project-num">01</span>
+            <span class="project-num" data-i18n="project1.num">01</span>
             <div class="project-links">
-              <a href="https://github.com/chaitanyakumarcodes/ai-data-analyst-app" target="_blank" class="project-link">↗ GitHub</a>
-              <a href="https://ai-data-analyst-app.onrender.com/" target="_blank" class="project-link">🔴 Live</a>
+              <a href="https://github.com/chaitanyakumarcodes/ai-data-analyst-app" target="_blank" class="project-link" data-i18n="project1.github">↗ GitHub</a>
+              <a href="https://ai-data-analyst-app.onrender.com/" target="_blank" class="project-link" data-i18n="project1.live">🔴 Live</a>
             </div>
           </div>
-          <h3 class="project-title">AI Data Analyst Agent</h3>
-          <p class="project-tagline">Automates end-to-end ML pipelines for non-technical users — no code required.</p>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="project1.title">AI Data Analyst Agent</h3>
+          <p class="project-tagline" data-i18n="project1.tagline">Automates end-to-end ML pipelines for non-technical users — no code required.</p>
+          <p class="project-desc" data-i18n="project1.desc">
             A Flask web app that ingests any CSV, auto-detects classification vs. regression, engineers features, trains Random Forest models, and delivers a professional PDF report. The tool-calling chatbot (GPT-4o-mini) operates directly on live session data — eliminating hallucinated metrics entirely.
           </p>
 
           <div class="arch-diagram">
-            <div class="arch-title">// System Architecture</div>
+            <div class="arch-title" data-i18n="project1.arch">// System Architecture</div>
             <div class="arch-flow">
-              <div class="arch-node input">CSV Upload</div>
+              <div class="arch-node input" data-i18n="project1.node1">CSV Upload</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">Auto Cleaning + EDA</div>
+              <div class="arch-node process" data-i18n="project1.node2">Auto Cleaning + EDA</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">Feature Engineering</div>
+              <div class="arch-node process" data-i18n="project1.node3">Feature Engineering</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node model">Random Forest (sklearn)</div>
+              <div class="arch-node model" data-i18n="project1.node4">Random Forest (sklearn)</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node model">GPT-4o-mini Tool Calls</div>
+              <div class="arch-node model" data-i18n="project1.node5">GPT-4o-mini Tool Calls</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node output">PDF Report + Chat</div>
+              <div class="arch-node output" data-i18n="project1.node6">PDF Report + Chat</div>
             </div>
           </div>
 
           <div class="project-meta">
             <div>
-              <div class="meta-group-label">Tech Stack</div>
+              <div class="meta-group-label" data-i18n="project1.tech_label">Tech Stack</div>
               <div class="tags">
                 <span class="tag">Python</span>
                 <span class="tag">Flask</span>
@@ -973,15 +1030,15 @@ flex-shrink: 0;
               </div>
             </div>
             <div>
-              <div class="meta-group-label">Key Metrics</div>
+              <div class="meta-group-label" data-i18n="project1.metrics_label">Key Metrics</div>
               <div class="metrics-row">
                 <div class="metric">
-                  <div class="metric-val">0</div>
-                  <div class="metric-key">LLM Hallucinations</div>
+                  <div class="metric-val" data-i18n="project1.metric1_val">0</div>
+                  <div class="metric-key" data-i18n="project1.metric1_key">LLM Hallucinations</div>
                 </div>
                 <div class="metric">
-                  <div class="metric-val">Live</div>
-                  <div class="metric-key">Deployed on Render</div>
+                  <div class="metric-val" data-i18n="project1.metric2_val">Live</div>
+                  <div class="metric-key" data-i18n="project1.metric2_key">Deployed on Render</div>
                 </div>
                 <div class="metric">
                   <div class="metric-val">Auto</div>
@@ -997,36 +1054,36 @@ flex-shrink: 0;
       <div class="project-card visible fade-up" data-tags="fullstack">
         <div class="project-card-inner">
           <div class="project-header">
-            <span class="project-num">02</span>
+            <span class="project-num" data-i18n="project2.num">02</span>
             <div class="project-links">
-              <a href="https://github.com/chaitanyakumarcodes/urs-web" target="_blank" class="project-link">↗ GitHub</a>
-              <a href="https://urs-web.onrender.com/" target="_blank" class="project-link">🔴 Live</a>
+              <a href="https://github.com/chaitanyakumarcodes/urs-web" target="_blank" class="project-link" data-i18n="project2.github">↗ GitHub</a>
+              <a href="https://urs-web.onrender.com/" target="_blank" class="project-link" data-i18n="project2.live">🔴 Live</a>
             </div>
           </div>
-          <h3 class="project-title">Vendor Analytics Dashboard</h3>
-          <p class="project-tagline">Full-stack vendor registration + real-time analytics platform on serverless cloud.</p>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="project2.title">Vendor Analytics Dashboard</h3>
+          <p class="project-tagline" data-i18n="project2.tagline">Full-stack vendor registration + real-time analytics platform on serverless cloud.</p>
+          <p class="project-desc" data-i18n="project2.desc">
             End-to-end web system for the Unified Rewards System (URS) with vendor registration, secure Firebase auth, and live sales analytics dashboards. Features 5-minute auto-refresh, date-range filtering, and one-click CSV/PDF export.
           </p>
 
           <div class="arch-diagram">
-            <div class="arch-title">// System Architecture</div>
+            <div class="arch-title" data-i18n="project2.arch">// System Architecture</div>
             <div class="arch-flow">
-              <div class="arch-node input">Vendor Registration</div>
+              <div class="arch-node input" data-i18n="project2.node1">Vendor Registration</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">Flask REST API</div>
+              <div class="arch-node process" data-i18n="project2.node2">Flask REST API</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node model">Firebase Firestore</div>
+              <div class="arch-node model" data-i18n="project2.node3">Firebase Firestore</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">Chart.js Dashboards</div>
+              <div class="arch-node process" data-i18n="project2.node4">Chart.js Dashboards</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node output">CSV / PDF Export</div>
+              <div class="arch-node output" data-i18n="project2.node5">CSV / PDF Export</div>
             </div>
           </div>
 
           <div class="project-meta">
             <div>
-              <div class="meta-group-label">Tech Stack</div>
+              <div class="meta-group-label" data-i18n="project2.tech_label">Tech Stack</div>
               <div class="tags">
                 <span class="tag">Python</span>
                 <span class="tag">Flask</span>
@@ -1038,19 +1095,19 @@ flex-shrink: 0;
               </div>
             </div>
             <div>
-              <div class="meta-group-label">Key Features</div>
+              <div class="meta-group-label" data-i18n="project2.features_label">Key Features</div>
               <div class="metrics-row">
                 <div class="metric">
-                  <div class="metric-val">5m</div>
-                  <div class="metric-key">Auto Refresh</div>
+                  <div class="metric-val" data-i18n="project2.metric1_val">5m</div>
+                  <div class="metric-key" data-i18n="project2.metric1_key">Auto Refresh</div>
                 </div>
                 <div class="metric">
-                  <div class="metric-val">HTTPS</div>
-                  <div class="metric-key">Production</div>
+                  <div class="metric-val" data-i18n="project2.metric2_val">HTTPS</div>
+                  <div class="metric-key" data-i18n="project2.metric2_key">Production</div>
                 </div>
                 <div class="metric">
-                  <div class="metric-val">NoSQL</div>
-                  <div class="metric-key">Serverless DB</div>
+                  <div class="metric-val" data-i18n="project2.metric3_val">NoSQL</div>
+                  <div class="metric-key" data-i18n="project2.metric3_key">Serverless DB</div>
                 </div>
               </div>
             </div>
@@ -1062,32 +1119,32 @@ flex-shrink: 0;
       <div class="project-card visible fade-up" data-tags="ml llm">
         <div class="project-card-inner">
           <div class="project-header">
-            <span class="project-num">03</span>
+            <span class="project-num" data-i18n="project3.num">03</span>
             <div class="project-links">
-              <a href="https://github.com/chaitanyakumarcodes/image-sentiment-classification" target="_blank" class="project-link">↗ GitHub</a>
+              <a href="https://github.com/chaitanyakumarcodes/image-sentiment-classification" target="_blank" class="project-link" data-i18n="project3.github">↗ GitHub</a>
             </div>
           </div>
-          <h3 class="project-title">Multimodal Image Sentiment Analysis</h3>
-          <p class="project-tagline">Fuses vision + language to classify image sentiment — going beyond pixels.</p>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="project3.title">Multimodal Image Sentiment Analysis</h3>
+          <p class="project-tagline" data-i18n="project3.tagline">Fuses vision + language to classify image sentiment — going beyond pixels.</p>
+          <p class="project-desc" data-i18n="project3.desc">
             A deep learning fusion pipeline combining ResNet50 visual features (2048-dim) with BERT-encoded text extracted via Tesseract OCR (768-dim) into a joint dense classifier for Positive / Negative / Neutral sentiment.
           </p>
 
           <div class="arch-diagram">
-            <div class="arch-title">// Fusion Architecture</div>
+            <div class="arch-title" data-i18n="project3.arch">// Fusion Architecture</div>
             <div class="arch-flow">
-              <div class="arch-node input">Image Input</div>
+              <div class="arch-node input" data-i18n="project3.node1">Image Input</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">ResNet50 (2048-dim)</div>
+              <div class="arch-node process" data-i18n="project3.node2">ResNet50 (2048-dim)</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node model">Feature Concat</div>
+              <div class="arch-node model" data-i18n="project3.node3">Feature Concat</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node output">Sentiment Class</div>
+              <div class="arch-node output" data-i18n="project3.node4">Sentiment Class</div>
             </div>
             <div style="margin-top:0.5rem;" class="arch-flow">
-              <div class="arch-node input">OCR (Tesseract)</div>
+              <div class="arch-node input" data-i18n="project3.node5">OCR (Tesseract)</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">BERT (768-dim)</div>
+              <div class="arch-node process" data-i18n="project3.node6">BERT (768-dim)</div>
               <div class="arch-arrow">→</div>
               <div class="arch-node model">Feature Concat</div>
             </div>
@@ -1095,7 +1152,7 @@ flex-shrink: 0;
 
           <div class="project-meta">
             <div>
-              <div class="meta-group-label">Tech Stack</div>
+              <div class="meta-group-label" data-i18n="project3.tech_label">Tech Stack</div>
               <div class="tags">
                 <span class="tag">Python</span>
                 <span class="tag">TensorFlow</span>
@@ -1106,19 +1163,19 @@ flex-shrink: 0;
               </div>
             </div>
             <div>
-              <div class="meta-group-label">Key Metrics</div>
+              <div class="meta-group-label" data-i18n="project3.metrics_label">Key Metrics</div>
               <div class="metrics-row">
                 <div class="metric">
-                  <div class="metric-val">86.8%</div>
-                  <div class="metric-key">Train Accuracy</div>
+                  <div class="metric-val" data-i18n="project3.metric1_val">86.8%</div>
+                  <div class="metric-key" data-i18n="project3.metric1_key">Train Accuracy</div>
                 </div>
                 <div class="metric">
-                  <div class="metric-val">10</div>
-                  <div class="metric-key">Epochs</div>
+                  <div class="metric-val" data-i18n="project3.metric2_val">10</div>
+                  <div class="metric-key" data-i18n="project3.metric2_key">Epochs</div>
                 </div>
                 <div class="metric">
-                  <div class="metric-val">bs=32</div>
-                  <div class="metric-key">Batch Size</div>
+                  <div class="metric-val" data-i18n="project3.metric3_val">bs=32</div>
+                  <div class="metric-key" data-i18n="project3.metric3_key">Batch Size</div>
                 </div>
               </div>
             </div>
@@ -1130,36 +1187,36 @@ flex-shrink: 0;
       <div class="project-card visible fade-up" data-tags="fullstack">
         <div class="project-card-inner">
           <div class="project-header">
-            <span class="project-num">04</span>
+            <span class="project-num" data-i18n="project4.num">04</span>
             <div class="project-links">
-              <a href="https://github.com/chaitanyakumarcodes" target="_blank" class="project-link">↗ GitHub</a>
-              <a href="#" target="_blank" class="project-link">🔴 Live</a>
+              <a href="https://github.com/chaitanyakumarcodes/ecommerce-website" target="_blank" class="project-link" data-i18n="project4.github">↗ GitHub</a>
+              <a href="https://web-production-ffaa3.up.railway.app/" target="_blank" class="project-link" data-i18n="project4.live">🔴 Live</a>
             </div>
           </div>
-          <h3 class="project-title">E-Commerce Web Application</h3>
-          <p class="project-tagline">Full-stack commerce platform with MVC architecture and responsive design.</p>
-          <p class="project-desc">
+          <h3 class="project-title" data-i18n="project4.title">E-Commerce Web Application</h3>
+          <p class="project-tagline" data-i18n="project4.tagline">Full-stack commerce platform with MVC architecture and responsive design.</p>
+          <p class="project-desc" data-i18n="project4.desc">
             A production-grade e-commerce app built with Flask featuring product listings, cart management, and SQLite-backed data layer — fully decoupled routing, data access, and Jinja2 templates.
           </p>
 
           <div class="arch-diagram">
-            <div class="arch-title">// MVC Architecture</div>
+            <div class="arch-title" data-i18n="project4.arch">// MVC Architecture</div>
             <div class="arch-flow">
-              <div class="arch-node input">User Request</div>
+              <div class="arch-node input" data-i18n="project4.node1">User Request</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">Flask Router</div>
+              <div class="arch-node process" data-i18n="project4.node2">Flask Router</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node process">database.py (CRUD)</div>
+              <div class="arch-node process" data-i18n="project4.node3">database.py (CRUD)</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node model">SQLite</div>
+              <div class="arch-node model" data-i18n="project4.node4">SQLite</div>
               <div class="arch-arrow">→</div>
-              <div class="arch-node output">Jinja2 Template</div>
+              <div class="arch-node output" data-i18n="project4.node5">Jinja2 Template</div>
             </div>
           </div>
 
           <div class="project-meta">
             <div>
-              <div class="meta-group-label">Tech Stack</div>
+              <div class="meta-group-label" data-i18n="project4.tech_label">Tech Stack</div>
               <div class="tags">
                 <span class="tag">Python</span>
                 <span class="tag">Flask</span>
@@ -1189,113 +1246,113 @@ flex-shrink: 0;
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <div class="section-label">Capabilities</div>
-    <h2 class="section-title">The <em>Stack</em></h2>
+    <div class="section-label" data-i18n="skills.label">Capabilities</div>
+    <h2 class="section-title"><span data-i18n="skills.title">The</span> <em data-i18n="skills.title_em">Stack</em></h2>
 
     <div class="skills-grid">
       <div class="skill-category fade-up">
-        <div class="skill-cat-icon">🧠</div>
-        <div class="skill-cat-name">AI / ML Core</div>
+        <div class="skill-cat-icon" data-i18n="skills.cat1_icon">🧠</div>
+        <div class="skill-cat-name" data-i18n="skills.cat1_name">AI / ML Core</div>
         <div class="skill-items">
           <div class="skill-item">
-            <span class="skill-name">LLMs & RAG</span>
+            <span class="skill-name" data-i18n="skills.llm">LLMs & RAG</span>
             <div class="skill-bar"><div class="skill-bar-fill cyan" data-width="95"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Transformers / BERT</span>
+            <span class="skill-name" data-i18n="skills.transformers">Transformers / BERT</span>
             <div class="skill-bar"><div class="skill-bar-fill cyan" data-width="88"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">scikit-learn / XGBoost</span>
+            <span class="skill-name" data-i18n="skills.sklearn">scikit-learn / XGBoost</span>
             <div class="skill-bar"><div class="skill-bar-fill cyan" data-width="90"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">TensorFlow / PyTorch</span>
+            <span class="skill-name" data-i18n="skills.dl">TensorFlow / PyTorch</span>
             <div class="skill-bar"><div class="skill-bar-fill cyan" data-width="82"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Computer Vision (CV)</span>
+            <span class="skill-name" data-i18n="skills.cv">Computer Vision (CV)</span>
             <div class="skill-bar"><div class="skill-bar-fill cyan" data-width="78"></div></div>
           </div>
         </div>
       </div>
 
       <div class="skill-category fade-up">
-        <div class="skill-cat-icon">⚙️</div>
-        <div class="skill-cat-name">Backend & APIs</div>
+        <div class="skill-cat-icon" data-i18n="skills.cat2_icon">⚙️</div>
+        <div class="skill-cat-name" data-i18n="skills.cat2_name">Backend & APIs</div>
         <div class="skill-items">
           <div class="skill-item">
-            <span class="skill-name">Flask / FastAPI</span>
+            <span class="skill-name" data-i18n="skills.flask">Flask / FastAPI</span>
             <div class="skill-bar"><div class="skill-bar-fill amber" data-width="92"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Python</span>
+            <span class="skill-name" data-i18n="skills.python">Python</span>
             <div class="skill-bar"><div class="skill-bar-fill amber" data-width="95"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">REST API Design</span>
+            <span class="skill-name" data-i18n="skills.rest">REST API Design</span>
             <div class="skill-bar"><div class="skill-bar-fill amber" data-width="88"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">SQL (MySQL / SQLite)</span>
+            <span class="skill-name" data-i18n="skills.sql">SQL (MySQL / SQLite)</span>
             <div class="skill-bar"><div class="skill-bar-fill amber" data-width="80"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Firebase / Firestore</span>
+            <span class="skill-name" data-i18n="skills.firebase">Firebase / Firestore</span>
             <div class="skill-bar"><div class="skill-bar-fill amber" data-width="75"></div></div>
           </div>
         </div>
       </div>
 
       <div class="skill-category fade-up">
-        <div class="skill-cat-icon">🚀</div>
-        <div class="skill-cat-name">Deployment & Cloud</div>
+        <div class="skill-cat-icon" data-i18n="skills.cat3_icon">🚀</div>
+        <div class="skill-cat-name" data-i18n="skills.cat3_name">Deployment & Cloud</div>
         <div class="skill-items">
           <div class="skill-item">
-            <span class="skill-name">Render / Vercel</span>
+            <span class="skill-name" data-i18n="skills.render">Render / Vercel</span>
             <div class="skill-bar"><div class="skill-bar-fill green" data-width="90"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">AWS (EC2, S3, Lambda)</span>
+            <span class="skill-name" data-i18n="skills.aws">AWS (EC2, S3, Lambda)</span>
             <div class="skill-bar"><div class="skill-bar-fill green" data-width="75"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Docker</span>
+            <span class="skill-name" data-i18n="skills.docker">Docker</span>
             <div class="skill-bar"><div class="skill-bar-fill green" data-width="72"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">AWS SageMaker</span>
+            <span class="skill-name" data-i18n="skills.sagemaker">AWS SageMaker</span>
             <div class="skill-bar"><div class="skill-bar-fill green" data-width="65"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Kubernetes</span>
+            <span class="skill-name" data-i18n="skills.k8s">Kubernetes</span>
             <div class="skill-bar"><div class="skill-bar-fill green" data-width="60"></div></div>
           </div>
         </div>
       </div>
 
       <div class="skill-category fade-up">
-        <div class="skill-cat-icon">🔗</div>
-        <div class="skill-cat-name">LLM Ecosystem</div>
+        <div class="skill-cat-icon" data-i18n="skills.cat4_icon">🔗</div>
+        <div class="skill-cat-name" data-i18n="skills.cat4_name">LLM Ecosystem</div>
         <div class="skill-items">
           <div class="skill-item">
-            <span class="skill-name">OpenAI API</span>
+            <span class="skill-name" data-i18n="skills.openai">OpenAI API</span>
             <div class="skill-bar"><div class="skill-bar-fill purple" data-width="92"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">LangChain</span>
+            <span class="skill-name" data-i18n="skills.langchain">LangChain</span>
             <div class="skill-bar"><div class="skill-bar-fill purple" data-width="85"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">HuggingFace</span>
+            <span class="skill-name" data-i18n="skills.huggingface">HuggingFace</span>
             <div class="skill-bar"><div class="skill-bar-fill purple" data-width="88"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">LLaMA / Open Models</span>
+            <span class="skill-name" data-i18n="skills.llama">LLaMA / Open Models</span>
             <div class="skill-bar"><div class="skill-bar-fill purple" data-width="78"></div></div>
           </div>
           <div class="skill-item">
-            <span class="skill-name">Prompt Engineering</span>
+            <span class="skill-name" data-i18n="skills.prompt">Prompt Engineering</span>
             <div class="skill-bar"><div class="skill-bar-fill purple" data-width="90"></div></div>
           </div>
         </div>
@@ -1307,55 +1364,55 @@ flex-shrink: 0;
 <!-- HOW I THINK -->
 <section id="thinking">
   <div class="section-inner">
-    <div class="section-label">Engineering Depth</div>
-    <h2 class="section-title">How I <em>Think</em></h2>
+    <div class="section-label" data-i18n="thinking.label">Engineering Depth</div>
+    <h2 class="section-title"><span data-i18n="thinking.title">How I</span> <em data-i18n="thinking.title_em">Think</em></h2>
 
     <div class="thinking-grid">
       <div class="think-card t1 fade-up">
-        <div class="think-num">01</div>
-        <div class="think-title">How I design AI systems</div>
+        <div class="think-num" data-i18n="thinking.card1_num">01</div>
+        <div class="think-title" data-i18n="thinking.card1_title">How I design AI systems</div>
         <ul class="think-steps">
-          <li>Start with problem framing — what's the actual failure mode being solved?</li>
-          <li>Decide ML vs. rule-based: if edge cases are enumerable, rules win</li>
-          <li>Build the pipeline first, then optimize the model inside it</li>
-          <li>Design for degradation — what happens when the model is wrong?</li>
-          <li>Ship a deterministic baseline before adding probabilistic layers</li>
+          <li data-i18n="thinking.card1_step1">Start with problem framing — what's the actual failure mode being solved?</li>
+          <li data-i18n="thinking.card1_step2">Decide ML vs. rule-based: if edge cases are enumerable, rules win</li>
+          <li data-i18n="thinking.card1_step3">Build the pipeline first, then optimize the model inside it</li>
+          <li data-i18n="thinking.card1_step4">Design for degradation — what happens when the model is wrong?</li>
+          <li data-i18n="thinking.card1_step5">Ship a deterministic baseline before adding probabilistic layers</li>
         </ul>
       </div>
 
       <div class="think-card t2 fade-up">
-        <div class="think-num">02</div>
-        <div class="think-title">How I handle LLM hallucination</div>
+        <div class="think-num" data-i18n="thinking.card2_num">02</div>
+        <div class="think-title" data-i18n="thinking.card2_title">How I handle LLM hallucination</div>
         <ul class="think-steps">
-          <li>Tool-calling over direct generation: compute facts, don't describe them</li>
-          <li>Ground responses in live data sources — retrieval before generation</li>
-          <li>Validation layers: parse structured output, check ranges, fallback gracefully</li>
-          <li>Separate "thinking" from "output" — structured reasoning prompts</li>
-          <li>Test with adversarial inputs, not just happy paths</li>
+          <li data-i18n="thinking.card2_step1">Tool-calling over direct generation: compute facts, don't describe them</li>
+          <li data-i18n="thinking.card2_step2">Ground responses in live data sources — retrieval before generation</li>
+          <li data-i18n="thinking.card2_step3">Validation layers: parse structured output, check ranges, fallback gracefully</li>
+          <li data-i18n="thinking.card2_step4">Separate "thinking" from "output" — structured reasoning prompts</li>
+          <li data-i18n="thinking.card2_step5">Test with adversarial inputs, not just happy paths</li>
         </ul>
       </div>
 
       <div class="think-card t3 fade-up">
-        <div class="think-num">03</div>
-        <div class="think-title">How I optimize inference performance</div>
+        <div class="think-num" data-i18n="thinking.card3_num">03</div>
+        <div class="think-title" data-i18n="thinking.card3_title">How I optimize inference performance</div>
         <ul class="think-steps">
-          <li>Profile first — latency is almost never where you think it is</li>
-          <li>GPU batching: queue multiple requests, amortize model load time</li>
-          <li>Cache embeddings for static content — avoid recomputing</li>
-          <li>Model quantization before scaling hardware (cheaper wins first)</li>
-          <li>Monitor cold-start vs. warm latency separately in production</li>
+          <li data-i18n="thinking.card3_step1">Profile first — latency is almost never where you think it is</li>
+          <li data-i18n="thinking.card3_step2">GPU batching: queue multiple requests, amortize model load time</li>
+          <li data-i18n="thinking.card3_step3">Cache embeddings for static content — avoid recomputing</li>
+          <li data-i18n="thinking.card3_step4">Model quantization before scaling hardware (cheaper wins first)</li>
+          <li data-i18n="thinking.card3_step5">Monitor cold-start vs. warm latency separately in production</li>
         </ul>
       </div>
 
       <div class="think-card t4 fade-up">
-        <div class="think-num">04</div>
-        <div class="think-title">Flask vs. FastAPI — when and why</div>
+        <div class="think-num" data-i18n="thinking.card4_num">04</div>
+        <div class="think-title" data-i18n="thinking.card4_title">Flask vs. FastAPI — when and why</div>
         <ul class="think-steps">
-          <li>Flask for rapid prototypes, AI demo apps, Jinja2 server-side rendering</li>
-          <li>FastAPI for async ML inference endpoints, type-safe APIs, high throughput</li>
-          <li>Flask's simplicity avoids overhead when concurrency isn't the bottleneck</li>
-          <li>FastAPI's Pydantic models enforce schema contracts — critical in production</li>
-          <li>The right choice depends on the team, not just the benchmark</li>
+          <li data-i18n="thinking.card4_step1">Flask for rapid prototypes, AI demo apps, Jinja2 server-side rendering</li>
+          <li data-i18n="thinking.card4_step2">FastAPI for async ML inference endpoints, type-safe APIs, high throughput</li>
+          <li data-i18n="thinking.card4_step3">Flask's simplicity avoids overhead when concurrency isn't the bottleneck</li>
+          <li data-i18n="thinking.card4_step4">FastAPI's Pydantic models enforce schema contracts — critical in production</li>
+          <li data-i18n="thinking.card4_step5">The right choice depends on the team, not just the benchmark</li>
         </ul>
       </div>
     </div>
@@ -1365,57 +1422,57 @@ flex-shrink: 0;
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-inner">
-    <div class="section-label">Professional History</div>
-    <h2 class="section-title">Where I've <em>Worked</em></h2>
+    <div class="section-label" data-i18n="experience.label">Professional History</div>
+    <h2 class="section-title"><span data-i18n="experience.title">Where I've</span> <em data-i18n="experience.title_em">Worked</em></h2>
 
     <div class="exp-timeline">
 
       <div class="exp-item fade-up">
         <div>
-          <div class="exp-date">Jul 2025 – Nov 2025</div>
-          <div class="exp-badge ba">Business Analyst</div>
+          <div class="exp-date" data-i18n="exp1.date">Jul 2025 – Nov 2025</div>
+          <div class="exp-badge ba" data-i18n="exp1.badge">Business Analyst</div>
         </div>
         <div>
-          <div class="exp-company">ICICI Bank</div>
-          <div class="exp-role">Business Analyst — Corporate Healthcare</div>
+          <div class="exp-company" data-i18n="exp1.company">ICICI Bank</div>
+          <div class="exp-role" data-i18n="exp1.role">Business Analyst — Corporate Healthcare</div>
           <ul class="exp-bullets">
-            <li>Managed a portfolio of <strong>10+ corporate healthcare clients worth ~$500K+</strong>, analyzing financial statements and operational data.</li>
-            <li>Conducted market and client analysis to identify cross-selling opportunities, directly <strong>supporting revenue growth strategies</strong>.</li>
-            <li>Structured client portfolio data to derive profitability insights, improving prioritization and decision-making efficiency.</li>
+            <li data-i18n="exp1.bullet1">Managed a portfolio of <strong>10+ corporate healthcare clients worth ~$500K+</strong>, analyzing financial statements and operational data.</li>
+            <li data-i18n="exp1.bullet2">Conducted market and client analysis to identify cross-selling opportunities, directly <strong>supporting revenue growth strategies</strong>.</li>
+            <li data-i18n="exp1.bullet3">Structured client portfolio data to derive profitability insights, improving prioritization and decision-making efficiency.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item fade-up">
         <div>
-          <div class="exp-date">Jan 2025 – Feb 2025</div>
-          <div class="exp-badge ai">AI Intern</div>
+          <div class="exp-date" data-i18n="exp2.date">Jan 2025 – Feb 2025</div>
+          <div class="exp-badge ai" data-i18n="exp2.badge">AI Intern</div>
         </div>
         <div>
-          <div class="exp-company">GenScriptAI</div>
-          <div class="exp-role">AI Intern — Multimodal Generation</div>
+          <div class="exp-company" data-i18n="exp2.company">GenScriptAI</div>
+          <div class="exp-role" data-i18n="exp2.role">AI Intern — Multimodal Generation</div>
           <ul class="exp-bullets">
-            <li>Built <strong>end-to-end AI pipelines</strong> using LLM and TTS models to generate audio from text, improving coherence via prompt engineering.</li>
-            <li>Developed a multi-modal system combining LLMs, diffusion models, and audio synthesis to <strong>automate video creation from text</strong>.</li>
-            <li>Optimized image generation with GPU acceleration — <strong>reduced inference time from ~5 minutes to ~15 seconds</strong> (20× speedup) via batching.</li>
-            <li>Deployed Flask-based APIs to manage generation workflows, enabling scalable multi-pipeline execution.</li>
+            <li data-i18n="exp2.bullet1">Built <strong>end-to-end AI pipelines</strong> using LLM and TTS models to generate audio from text, improving coherence via prompt engineering.</li>
+            <li data-i18n="exp2.bullet2">Developed a multi-modal system combining LLMs, diffusion models, and audio synthesis to <strong>automate video creation from text</strong>.</li>
+            <li data-i18n="exp2.bullet3">Optimized image generation with GPU acceleration — <strong>reduced inference time from ~5 minutes to ~15 seconds</strong> (20× speedup) via batching.</li>
+            <li data-i18n="exp2.bullet4">Deployed Flask-based APIs to manage generation workflows, enabling scalable multi-pipeline execution.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item fade-up">
         <div>
-          <div class="exp-date">May 2024 – Jul 2024</div>
-          <div class="exp-badge tech">Tech Intern</div>
+          <div class="exp-date" data-i18n="exp3.date">May 2024 – Jul 2024</div>
+          <div class="exp-badge tech" data-i18n="exp3.badge">Tech Intern</div>
         </div>
         <div>
-          <div class="exp-company">Jindal Steel Limited</div>
-          <div class="exp-role">Technology Intern — ML & Optimization</div>
+          <div class="exp-company" data-i18n="exp3.company">Jindal Steel Limited</div>
+          <div class="exp-role" data-i18n="exp3.role">Technology Intern — ML & Optimization</div>
           <ul class="exp-bullets">
-            <li>Worked with large-scale operational data — <strong>data cleaning, feature engineering, and EDA</strong> to identify key performance drivers.</li>
-            <li>Built an ML model achieving <strong>R² ≈ 0.85</strong>, significantly reducing system output variability.</li>
-            <li>Developed a data-driven efficiency tool identifying <strong>10–15% optimization opportunities</strong> through input-output analysis.</li>
-            <li>Analyzed time-series trends to surface patterns affecting system efficiency, supporting data-driven decisions.</li>
+            <li data-i18n="exp3.bullet1">Worked with large-scale operational data — <strong>data cleaning, feature engineering, and EDA</strong> to identify key performance drivers.</li>
+            <li data-i18n="exp3.bullet2">Built an ML model achieving <strong>R² ≈ 0.85</strong>, significantly reducing system output variability.</li>
+            <li data-i18n="exp3.bullet3">Developed a data-driven efficiency tool identifying <strong>10–15% optimization opportunities</strong> through input-output analysis.</li>
+            <li data-i18n="exp3.bullet4">Analyzed time-series trends to surface patterns affecting system efficiency, supporting data-driven decisions.</li>
           </ul>
         </div>
       </div>
@@ -1427,36 +1484,36 @@ flex-shrink: 0;
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="section-inner">
-    <div class="section-label">Recognition</div>
-    <h2 class="section-title">Wins & <em>Awards</em></h2>
+    <div class="section-label" data-i18n="achievements.label">Recognition</div>
+    <h2 class="section-title"><span data-i18n="achievements.title">Wins &</span> <em data-i18n="achievements.title_em">Awards</em></h2>
 
     <div class="ach-grid">
       <div class="ach-card fade-up">
-        <div class="ach-icon">🏆</div>
+        <div class="ach-icon" data-i18n="ach1.icon">🏆</div>
         <div class="ach-text">
-          <div class="ach-title">NPCI Fintech Hackathon Finalist</div>
-          <div class="ach-sub">National Payment Corporation of India</div>
+          <div class="ach-title" data-i18n="ach1.title">NPCI Fintech Hackathon Finalist</div>
+          <div class="ach-sub" data-i18n="ach1.sub">National Payment Corporation of India</div>
         </div>
       </div>
       <div class="ach-card fade-up">
-        <div class="ach-icon">🥇</div>
+        <div class="ach-icon" data-i18n="ach2.icon">🥇</div>
         <div class="ach-text">
-          <div class="ach-title">IIT Kharagpur AI-volution — Top 8</div>
-          <div class="ach-sub">Out of 800+ teams nationwide</div>
+          <div class="ach-title" data-i18n="ach2.title">IIT Kharagpur AI-volution — Top 8</div>
+          <div class="ach-sub" data-i18n="ach2.sub">Out of 800+ teams nationwide</div>
         </div>
       </div>
       <div class="ach-card fade-up">
-        <div class="ach-icon">🎖️</div>
+        <div class="ach-icon" data-i18n="ach3.icon">🎖️</div>
         <div class="ach-text">
-          <div class="ach-title">Director's Awardee</div>
-          <div class="ach-sub">Best Performer — Content Team Lead, Counseling Cell</div>
+          <div class="ach-title" data-i18n="ach3.title">Director's Awardee</div>
+          <div class="ach-sub" data-i18n="ach3.sub">Best Performer — Content Team Lead, Counseling Cell</div>
         </div>
       </div>
       <div class="ach-card fade-up">
-        <div class="ach-icon">🌐</div>
+        <div class="ach-icon" data-i18n="ach4.icon">🌐</div>
         <div class="ach-text">
-          <div class="ach-title">Inbound Coordinator</div>
-          <div class="ach-sub">International Relations Cell, IIT Hyderabad</div>
+          <div class="ach-title" data-i18n="ach4.title">Inbound Coordinator</div>
+          <div class="ach-sub" data-i18n="ach4.sub">International Relations Cell, IIT Hyderabad</div>
         </div>
       </div>
     </div>
@@ -1470,28 +1527,28 @@ flex-shrink: 0;
       <div class="about-visual">
         <div class="about-box">
           <div class="about-ring"></div>
-          <div class="about-initials">CK</div>
-          <div class="about-iit">IIT Hyderabad · 8.54 GPA</div>
+          <div class="about-initials" data-i18n="about.initials">CK</div>
+          <div class="about-iit" data-i18n="about.iit">IIT Hyderabad · 8.54 GPA</div>
         </div>
       </div>
       <div class="about-content fade-up">
-        <h2>Building AI that<br>actually <em style="font-style:normal;color:var(--cyan);">works</em> in production</h2>
-        <p>
+        <h2><span data-i18n="about.title">Building AI that</span><br>actually <em style="font-style:normal;color:var(--cyan);" data-i18n="about.title_em">works</em> <span data-i18n="about.title_em2">in production</span></h2>
+        <p data-i18n="about.p1">
           I'm a B.Tech graduate from <strong>IIT Hyderabad</strong> (2021–2025) with a deep focus on end-to-end AI engineering. I'm not a researcher — I'm a builder. I care about the gap between a model that works in a notebook and a system that works for real users.
         </p>
-        <p>
+        <p data-i18n="about.p2">
           My experience spans <strong>LLM applications, multimodal AI, production ML systems, and full-stack development</strong>. I've deployed inference pipelines at GenScriptAI, built ML models for industrial optimization at Jindal Steel, and shipped multiple live web applications.
         </p>
-        <p>
+        <p data-i18n="about.p3">
           I'm targeting <strong>AI Engineer roles</strong> where I can own the full stack — from model selection to production deployment — at companies building with AI as a core product, not an afterthought.
         </p>
         <div class="about-chips">
-          <span class="about-chip">LLM Systems</span>
-          <span class="about-chip">ML Pipelines</span>
-          <span class="about-chip">API Engineering</span>
-          <span class="about-chip">Cloud Deployment</span>
-          <span class="about-chip">Multimodal AI</span>
-          <span class="about-chip">RAG Architecture</span>
+          <span class="about-chip" data-i18n="about.chip1">LLM Systems</span>
+          <span class="about-chip" data-i18n="about.chip2">ML Pipelines</span>
+          <span class="about-chip" data-i18n="about.chip3">API Engineering</span>
+          <span class="about-chip" data-i18n="about.chip4">Cloud Deployment</span>
+          <span class="about-chip" data-i18n="about.chip5">Multimodal AI</span>
+          <span class="about-chip" data-i18n="about.chip6">RAG Architecture</span>
         </div>
       </div>
     </div>
@@ -1502,25 +1559,25 @@ flex-shrink: 0;
 <section id="contact">
   <div class="section-inner">
     <div class="contact-inner">
-      <div class="section-label">Get In Touch</div>
-      <h2 class="section-title">Let's build<br>something <em>real</em></h2>
-      <p class="contact-desc">
+      <div class="section-label" data-i18n="contact.label">Get In Touch</div>
+      <h2 class="section-title"><span data-i18n="contact.title">Let's build</span><br><span data-i18n="contact.title_em">something</span> <em data-i18n="contact.title_em2">real</em></h2>
+      <p class="contact-desc" data-i18n="contact.desc">
         I'm actively looking for AI Engineer roles. If you're building intelligent systems and need someone who cares as much about architecture as about accuracy — let's talk.
       </p>
       <div class="contact-links">
-        <a href="mailto:chaitanyakumar160@gmail.com" class="contact-link">
+        <a href="mailto:chaitanyakumar160@gmail.com" class="contact-link" data-i18n="contact.email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           chaitanyakumar160@gmail.com
         </a>
-        <a href="https://www.linkedin.com/in/chaitanya-kumar-27061a259/" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/chaitanya-kumar-27061a259/" target="_blank" class="contact-link" data-i18n="contact.linkedin">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
-        <a href="https://github.com/chaitanyakumarcodes" target="_blank" class="contact-link">
+        <a href="https://github.com/chaitanyakumarcodes" target="_blank" class="contact-link" data-i18n="contact.github">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a href="tel:+917838167243" class="contact-link">
+        <a href="tel:+917838167243" class="contact-link" data-i18n="contact.phone">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.91-1.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           +91 78381 67243
         </a>
@@ -1530,13 +1587,575 @@ flex-shrink: 0;
 </section>
 
 <footer>
-  <span>Chaitanya Kumar</span>
-  <span style="color:var(--muted)">AI Engineer · IIT Hyderabad · 2025</span>
-  <span style="color:var(--muted)">Built with precision, not templates.</span>
+  <span data-i18n="footer.name">Chaitanya Kumar</span>
+  <span style="color:var(--muted)" data-i18n="footer.role">AI Engineer · IIT Hyderabad · 2025</span>
+  <span style="color:var(--muted)" data-i18n="footer.tagline">Built with precision, not templates.</span>
 </footer>
 
 <script>
-  // Project filter
+  // ========== TRANSLATIONS ==========
+  const translations = {
+    en: {
+      // Navigation
+      'nav.projects': 'Projects',
+      'nav.skills': 'Skills',
+      'nav.thinking': 'Thinking',
+      'nav.experience': 'Experience',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      
+      // Hero Section
+      'hero.tag': 'AI Engineer',
+      'hero.name': 'Chaitanya',
+      'hero.name_line2': 'Kumar',
+      'hero.role': 'Building end-to-end intelligent systems',
+      'hero.desc': 'I design and deploy production AI systems — from LLM pipelines and RAG architectures to full-stack ML applications. I don\'t just use APIs; I understand what happens inside them.',
+      'hero.desc_em': 'production AI systems',
+      'hero.btn_projects': '🚀 View Projects',
+      'hero.btn_github': '⌥ GitHub',
+      'hero.btn_resume': '📄 Resume',
+      'hero.btn_hire': '✉ Hire Me',
+      'hero.stat_val1': '6+',
+      'hero.stat_label1': 'Projects Shipped',
+      'hero.stat_val2': '3',
+      'hero.stat_label2': 'Internships',
+      
+      // Projects Section
+      'projects.label': 'Featured Work',
+      'projects.title': 'Things I\'ve',
+      'projects.title_em': 'Built',
+      'projects.tab_all': 'All Projects',
+      'projects.tab_llm': 'LLM / RAG',
+      'projects.tab_fullstack': 'Full-Stack',
+      'projects.tab_ml': 'ML / CV',
+      
+      // Project 1: AI Data Analyst
+      'project1.num': '01',
+      'project1.github': '↗ GitHub',
+      'project1.live': '🔴 Live',
+      'project1.title': 'AI Data Analyst Agent',
+      'project1.tagline': 'Automates end-to-end ML pipelines for non-technical users — no code required.',
+      'project1.desc': 'A Flask web app that ingests any CSV, auto-detects classification vs. regression, engineers features, trains Random Forest models, and delivers a professional PDF report. The tool-calling chatbot (GPT-4o-mini) operates directly on live session data — eliminating hallucinated metrics entirely.',
+      'project1.arch': '// System Architecture',
+      'project1.node1': 'CSV Upload',
+      'project1.node2': 'Auto Cleaning + EDA',
+      'project1.node3': 'Feature Engineering',
+      'project1.node4': 'Random Forest (sklearn)',
+      'project1.node5': 'GPT-4o-mini Tool Calls',
+      'project1.node6': 'PDF Report + Chat',
+      'project1.tech_label': 'Tech Stack',
+      'project1.metrics_label': 'Key Metrics',
+      'project1.metric1_val': '0',
+      'project1.metric1_key': 'LLM Hallucinations',
+      'project1.metric2_val': 'Live',
+      'project1.metric2_key': 'Deployed on Render',
+      'project1.metric3_val': 'Auto',
+      'project1.metric3_key': 'Task Detection',
+      
+      // Project 2: Vendor Dashboard
+      'project2.num': '02',
+      'project2.title': 'Vendor Analytics Dashboard',
+      'project2.tagline': 'Full-stack vendor registration + real-time analytics platform on serverless cloud.',
+      'project2.desc': 'End-to-end web system for the Unified Rewards System (URS) with vendor registration, secure Firebase auth, and live sales analytics dashboards. Features 5-minute auto-refresh, date-range filtering, and one-click CSV/PDF export.',
+      'project2.arch': '// System Architecture',
+      'project2.node1': 'Vendor Registration',
+      'project2.node2': 'Flask REST API',
+      'project2.node3': 'Firebase Firestore',
+      'project2.node4': 'Chart.js Dashboards',
+      'project2.node5': 'CSV / PDF Export',
+      'project2.tech_label': 'Tech Stack',
+      'project2.features_label': 'Key Features',
+      'project2.metric1_val': '5m',
+      'project2.metric1_key': 'Auto Refresh',
+      'project2.metric2_val': 'HTTPS',
+      'project2.metric2_key': 'Production',
+      'project2.metric3_val': 'NoSQL',
+      'project2.metric3_key': 'Serverless DB',
+      
+      // Project 3: Multimodal Sentiment
+      'project3.num': '03',
+      'project3.title': 'Multimodal Image Sentiment Analysis',
+      'project3.tagline': 'Fuses vision + language to classify image sentiment — going beyond pixels.',
+      'project3.desc': 'A deep learning fusion pipeline combining ResNet50 visual features (2048-dim) with BERT-encoded text extracted via Tesseract OCR (768-dim) into a joint dense classifier for Positive / Negative / Neutral sentiment.',
+      'project3.arch': '// Fusion Architecture',
+      'project3.node1': 'Image Input',
+      'project3.node2': 'ResNet50 (2048-dim)',
+      'project3.node3': 'Feature Concat',
+      'project3.node4': 'Sentiment Class',
+      'project3.node5': 'OCR (Tesseract)',
+      'project3.node6': 'BERT (768-dim)',
+      'project3.tech_label': 'Tech Stack',
+      'project3.metrics_label': 'Key Metrics',
+      'project3.metric1_val': '86.8%',
+      'project3.metric1_key': 'Train Accuracy',
+      'project3.metric2_val': '10',
+      'project3.metric2_key': 'Epochs',
+      'project3.metric3_val': 'bs=32',
+      'project3.metric3_key': 'Batch Size',
+      
+      // Project 4: E-Commerce
+      'project4.num': '04',
+      'project4.title': 'E-Commerce Web Application',
+      'project4.tagline': 'Full-stack commerce platform with MVC architecture and responsive design.',
+      'project4.desc': 'A production-grade e-commerce app built with Flask featuring product listings, cart management, and SQLite-backed data layer — fully decoupled routing, data access, and Jinja2 templates.',
+      'project4.arch': '// MVC Architecture',
+      'project4.node1': 'User Request',
+      'project4.node2': 'Flask Router',
+      'project4.node3': 'database.py (CRUD)',
+      'project4.node4': 'SQLite',
+      'project4.node5': 'Jinja2 Template',
+      'project4.tech_label': 'Tech Stack',
+      'project4.features_label': 'Key Features',
+      
+      // Skills Section
+      'skills.label': 'Capabilities',
+      'skills.title': 'The',
+      'skills.title_em': 'Stack',
+      'skills.cat1_name': 'AI / ML Core',
+      'skills.cat1_icon': '🧠',
+      'skills.llm': 'LLMs & RAG',
+      'skills.transformers': 'Transformers / BERT',
+      'skills.sklearn': 'scikit-learn / XGBoost',
+      'skills.dl': 'TensorFlow / PyTorch',
+      'skills.cv': 'Computer Vision (CV)',
+      'skills.cat2_name': 'Backend & APIs',
+      'skills.cat2_icon': '⚙️',
+      'skills.flask': 'Flask / FastAPI',
+      'skills.python': 'Python',
+      'skills.rest': 'REST API Design',
+      'skills.sql': 'SQL (MySQL / SQLite)',
+      'skills.firebase': 'Firebase / Firestore',
+      'skills.cat3_name': 'Deployment & Cloud',
+      'skills.cat3_icon': '🚀',
+      'skills.render': 'Render / Vercel',
+      'skills.aws': 'AWS (EC2, S3, Lambda)',
+      'skills.docker': 'Docker',
+      'skills.sagemaker': 'AWS SageMaker',
+      'skills.k8s': 'Kubernetes',
+      'skills.cat4_name': 'LLM Ecosystem',
+      'skills.cat4_icon': '🔗',
+      'skills.openai': 'OpenAI API',
+      'skills.langchain': 'LangChain',
+      'skills.huggingface': 'HuggingFace',
+      'skills.llama': 'LLaMA / Open Models',
+      'skills.prompt': 'Prompt Engineering',
+      
+      // Thinking Section
+      'thinking.label': 'Engineering Depth',
+      'thinking.title': 'How I',
+      'thinking.title_em': 'Think',
+      'thinking.card1_num': '01',
+      'thinking.card1_title': 'How I design AI systems',
+      'thinking.card1_step1': 'Start with problem framing — what\'s the actual failure mode being solved?',
+      'thinking.card1_step2': 'Decide ML vs. rule-based: if edge cases are enumerable, rules win',
+      'thinking.card1_step3': 'Build the pipeline first, then optimize the model inside it',
+      'thinking.card1_step4': 'Design for degradation — what happens when the model is wrong?',
+      'thinking.card1_step5': 'Ship a deterministic baseline before adding probabilistic layers',
+      'thinking.card2_num': '02',
+      'thinking.card2_title': 'How I handle LLM hallucination',
+      'thinking.card2_step1': 'Tool-calling over direct generation: compute facts, don\'t describe them',
+      'thinking.card2_step2': 'Ground responses in live data sources — retrieval before generation',
+      'thinking.card2_step3': 'Validation layers: parse structured output, check ranges, fallback gracefully',
+      'thinking.card2_step4': 'Separate "thinking" from "output" — structured reasoning prompts',
+      'thinking.card2_step5': 'Test with adversarial inputs, not just happy paths',
+      'thinking.card3_num': '03',
+      'thinking.card3_title': 'How I optimize inference performance',
+      'thinking.card3_step1': 'Profile first — latency is almost never where you think it is',
+      'thinking.card3_step2': 'GPU batching: queue multiple requests, amortize model load time',
+      'thinking.card3_step3': 'Cache embeddings for static content — avoid recomputing',
+      'thinking.card3_step4': 'Model quantization before scaling hardware (cheaper wins first)',
+      'thinking.card3_step5': 'Monitor cold-start vs. warm latency separately in production',
+      'thinking.card4_num': '04',
+      'thinking.card4_title': 'Flask vs. FastAPI — when and why',
+      'thinking.card4_step1': 'Flask for rapid prototypes, AI demo apps, Jinja2 server-side rendering',
+      'thinking.card4_step2': 'FastAPI for async ML inference endpoints, type-safe APIs, high throughput',
+      'thinking.card4_step3': 'Flask\'s simplicity avoids overhead when concurrency isn\'t the bottleneck',
+      'thinking.card4_step4': 'FastAPI\'s Pydantic models enforce schema contracts — critical in production',
+      'thinking.card4_step5': 'The right choice depends on the team, not just the benchmark',
+      
+      // Experience Section
+      'experience.label': 'Professional History',
+      'experience.title': 'Where I\'ve',
+      'experience.title_em': 'Worked',
+      'exp1.date': 'Jul 2025 – Nov 2025',
+      'exp1.badge': 'Business Analyst',
+      'exp1.company': 'ICICI Bank',
+      'exp1.role': 'Business Analyst — Corporate Healthcare',
+      'exp1.bullet1': 'Managed a portfolio of 10+ corporate healthcare clients worth ~$500K+, analyzing financial statements and operational data.',
+      'exp1.bullet2': 'Conducted market and client analysis to identify cross-selling opportunities, directly supporting revenue growth strategies.',
+      'exp1.bullet3': 'Structured client portfolio data to derive profitability insights, improving prioritization and decision-making efficiency.',
+      'exp2.date': 'Jan 2025 – Feb 2025',
+      'exp2.badge': 'AI Intern',
+      'exp2.company': 'GenScriptAI',
+      'exp2.role': 'AI Intern — Multimodal Generation',
+      'exp2.bullet1': 'Built end-to-end AI pipelines using LLM and TTS models to generate audio from text, improving coherence via prompt engineering.',
+      'exp2.bullet2': 'Developed a multi-modal system combining LLMs, diffusion models, and audio synthesis to automate video creation from text.',
+      'exp2.bullet3': 'Optimized image generation with GPU acceleration — reduced inference time from ~5 minutes to ~15 seconds (20× speedup) via batching.',
+      'exp2.bullet4': 'Deployed Flask-based APIs to manage generation workflows, enabling scalable multi-pipeline execution.',
+      'exp3.date': 'May 2024 – Jul 2024',
+      'exp3.badge': 'Tech Intern',
+      'exp3.company': 'Jindal Steel Limited',
+      'exp3.role': 'Technology Intern — ML & Optimization',
+      'exp3.bullet1': 'Worked with large-scale operational data — data cleaning, feature engineering, and EDA to identify key performance drivers.',
+      'exp3.bullet2': 'Built an ML model achieving R² ≈ 0.85, significantly reducing system output variability.',
+      'exp3.bullet3': 'Developed a data-driven efficiency tool identifying 10–15% optimization opportunities through input-output analysis.',
+      'exp3.bullet4': 'Analyzed time-series trends to surface patterns affecting system efficiency, supporting data-driven decisions.',
+      
+      // Achievements Section
+      'achievements.label': 'Recognition',
+      'achievements.title': 'Wins &',
+      'achievements.title_em': 'Awards',
+      'ach1.title': 'NPCI Fintech Hackathon Finalist',
+      'ach1.sub': 'National Payment Corporation of India',
+      'ach1.icon': '🏆',
+      'ach2.title': 'IIT Kharagpur AI-volution — Top 8',
+      'ach2.sub': 'Out of 800+ teams nationwide',
+      'ach2.icon': '🥇',
+      'ach3.title': 'Director\'s Awardee',
+      'ach3.sub': 'Best Performer — Content Team Lead, Counseling Cell',
+      'ach3.icon': '🎖️',
+      'ach4.title': 'Inbound Coordinator',
+      'ach4.sub': 'International Relations Cell, IIT Hyderabad',
+      'ach4.icon': '🌐',
+      
+      // About Section
+      'about.title': 'Building AI that',
+      'about.title_em': 'works',
+      'about.title_em2': 'in production',
+      'about.p1': 'I\'m a B.Tech graduate from IIT Hyderabad (2021–2025) with a deep focus on end-to-end AI engineering. I\'m not a researcher — I\'m a builder. I care about the gap between a model that works in a notebook and a system that works for real users.',
+      'about.p2': 'My experience spans LLM applications, multimodal AI, production ML systems, and full-stack development. I\'ve deployed inference pipelines at GenScriptAI, built ML models for industrial optimization at Jindal Steel, and shipped multiple live web applications.',
+      'about.p3': 'I\'m targeting AI Engineer roles where I can own the full stack — from model selection to production deployment — at companies building with AI as a core product, not an afterthought.',
+      'about.chip1': 'LLM Systems',
+      'about.chip2': 'ML Pipelines',
+      'about.chip3': 'API Engineering',
+      'about.chip4': 'Cloud Deployment',
+      'about.chip5': 'Multimodal AI',
+      'about.chip6': 'RAG Architecture',
+      'about.initials': 'CK',
+      'about.iit': 'IIT Hyderabad · 8.54 GPA',
+      
+      // Contact Section
+      'contact.label': 'Get In Touch',
+      'contact.title': 'Let\'s build',
+      'contact.title_em': 'something',
+      'contact.title_em2': 'real',
+      'contact.desc': 'I\'m actively looking for AI Engineer roles. If you\'re building intelligent systems and need someone who cares as much about architecture as about accuracy — let\'s talk.',
+      'contact.email': 'chaitanyakumar160@gmail.com',
+      'contact.linkedin': 'LinkedIn',
+      'contact.github': 'GitHub',
+      'contact.phone': '+91 78381 67243',
+      
+      // Footer
+      'footer.name': 'Chaitanya Kumar',
+      'footer.role': 'AI Engineer · IIT Hyderabad · 2025',
+      'footer.tagline': 'Built with precision, not templates.',
+    },
+    
+    ja: {
+      // Navigation
+      'nav.projects': 'プロジェクト',
+      'nav.skills': 'スキル',
+      'nav.thinking': '考え方',
+      'nav.experience': '経歴',
+      'nav.about': 'について',
+      'nav.contact': 'お問い合わせ',
+      
+      // Hero Section
+      'hero.tag': 'AIエンジニア',
+      'hero.name': 'Chaitanya',
+      'hero.name_line2': 'Kumar',
+      'hero.role': 'エンドツーエンドのインテリジェントシステムの構築',
+      'hero.desc': '私はLLMパイプラインとRAGアーキテクチャから本番環境対応のML アプリケーションまで、エンドツーエンドのAIシステムを設計・運用します。API を使うだけではなく、その内部で何が起こっているかを理解しています。',
+      'hero.desc_em': '本番環境対応のAIシステム',
+      'hero.btn_projects': '🚀 プロジェクトを見る',
+      'hero.btn_github': '⌥ GitHub',
+      'hero.btn_resume': '📄 履歴書',
+      'hero.btn_hire': '✉ 雇用を依頼',
+      'hero.stat_val1': '6+',
+      'hero.stat_label1': 'プロジェクト完成',
+      'hero.stat_val2': '3',
+      'hero.stat_label2': 'インターンシップ',
+      
+      // Projects Section
+      'projects.label': '特集プロジェクト',
+      'projects.title': '作成した',
+      'projects.title_em': 'もの',
+      'projects.tab_all': 'すべてのプロジェクト',
+      'projects.tab_llm': 'LLM / RAG',
+      'projects.tab_fullstack': 'フルスタック',
+      'projects.tab_ml': 'ML / CV',
+      
+      // Project 1: AI Data Analyst
+      'project1.num': '01',
+      'project1.github': '↗ GitHub',
+      'project1.live': '🔴 ライブ',
+      'project1.title': 'AIデータ分析エージェント',
+      'project1.tagline': '非技術ユーザー向けのエンドツーエンドMLパイプラインを自動化 — コード不要。',
+      'project1.desc': 'CSV を取り込む Flask ウェブアプリ。分類と回帰を自動判定し、機能エンジニアリング、ランダムフォレストモデルのトレーニング、プロフェッショナルな PDF レポートの生成を行います。ツール呼び出しチャットボット (GPT-4o-mini) はライブセッションデータ上で直接動作し、幻覚的なメトリクスを完全に排除します。',
+      'project1.arch': '// システムアーキテクチャ',
+      'project1.node1': 'CSV アップロード',
+      'project1.node2': '自動クリーニング + EDA',
+      'project1.node3': '機能エンジニアリング',
+      'project1.node4': 'ランダムフォレスト (sklearn)',
+      'project1.node5': 'GPT-4o-mini ツール呼び出し',
+      'project1.node6': 'PDF レポート + チャット',
+      'project1.tech_label': 'テッククタック',
+      'project1.metrics_label': '主要メトリクス',
+      'project1.metric1_val': '0',
+      'project1.metric1_key': 'LLM の幻覚',
+      'project1.metric2_val': 'ライブ',
+      'project1.metric2_key': 'Render にデプロイ',
+      'project1.metric3_val': '自動',
+      'project1.metric3_key': 'タスク検出',
+      
+      // Project 2: Vendor Dashboard
+      'project2.num': '02',
+      'project2.title': 'ベンダー分析ダッシュボード',
+      'project2.tagline': 'フルスタックベンダー登録 + サーバーレスクラウド上のリアルタイム分析プラットフォーム。',
+      'project2.desc': 'ベンダー登録、安全な Firebase 認証、ライブ売上分析ダッシュボードを備えた、統合リワードシステム (URS) 向けのエンドツーエンド Web システム。5 分ごとの自動更新、日付範囲フィルタリング、ワンクリック CSV/PDF エクスポート機能を搭載しています。',
+      'project2.arch': '// システムアーキテクチャ',
+      'project2.node1': 'ベンダー登録',
+      'project2.node2': 'Flask REST API',
+      'project2.node3': 'Firebase Firestore',
+      'project2.node4': 'Chart.js ダッシュボード',
+      'project2.node5': 'CSV / PDF エクスポート',
+      'project2.tech_label': 'テッククタック',
+      'project2.features_label': '主な特徴',
+      'project2.metric1_val': '5分',
+      'project2.metric1_key': '自動更新',
+      'project2.metric2_val': 'HTTPS',
+      'project2.metric2_key': '本番環境',
+      'project2.metric3_val': 'NoSQL',
+      'project2.metric3_key': 'サーバーレス DB',
+      
+      // Project 3: Multimodal Sentiment
+      'project3.num': '03',
+      'project3.title': 'マルチモーダル画像感情分析',
+      'project3.tagline': 'ビジョンと言語を融合させて画像の感情を分類 — ピクセル以上のもの。',
+      'project3.desc': 'ResNet50 ビジュアル機能 (2048 次元) と Tesseract OCR で抽出されたテキストから BERT でエンコードされた (768 次元) を結合し、Positive / Negative / Neutral 感情用のジョイント密集分類器に組み込む、深層学習融合パイプライン。',
+      'project3.arch': '// 融合アーキテクチャ',
+      'project3.node1': '画像入力',
+      'project3.node2': 'ResNet50 (2048 次元)',
+      'project3.node3': '機能結合',
+      'project3.node4': '感情クラス',
+      'project3.node5': 'OCR (Tesseract)',
+      'project3.node6': 'BERT (768 次元)',
+      'project3.tech_label': 'テッククタック',
+      'project3.metrics_label': '主要メトリクス',
+      'project3.metric1_val': '86.8%',
+      'project3.metric1_key': 'トレーニング精度',
+      'project3.metric2_val': '10',
+      'project3.metric2_key': 'エポック',
+      'project3.metric3_val': 'bs=32',
+      'project3.metric3_key': 'バッチサイズ',
+      
+      // Project 4: E-Commerce
+      'project4.num': '04',
+      'project4.title': 'eコマース Web アプリケーション',
+      'project4.tagline': 'MVC アーキテクチャとレスポンシブデザイン機能のフルスタッククマース プラットフォーム。',
+      'project4.desc': '商品リスト、カート管理、SQLite バックアップデータレイヤーを備えた Flask で構築された本番環境対応のeコマースアプリ — ルーティング、データアクセス、Jinja2 テンプレートが完全に分離されています。',
+      'project4.arch': '// MVC アーキテクチャ',
+      'project4.node1': 'ユーザーリクエスト',
+      'project4.node2': 'Flask ルーター',
+      'project4.node3': 'database.py (CRUD)',
+      'project4.node4': 'SQLite',
+      'project4.node5': 'Jinja2 テンプレート',
+      'project4.tech_label': 'テッククタック',
+      'project4.features_label': '主な特徴',
+      
+      // Skills Section
+      'skills.label': '能力',
+      'skills.title': '',
+      'skills.title_em': 'スタック',
+      'skills.cat1_name': 'AI / ML コア',
+      'skills.cat1_icon': '🧠',
+      'skills.llm': 'LLM と RAG',
+      'skills.transformers': 'Transformers / BERT',
+      'skills.sklearn': 'scikit-learn / XGBoost',
+      'skills.dl': 'TensorFlow / PyTorch',
+      'skills.cv': 'コンピュータビジョン (CV)',
+      'skills.cat2_name': 'バックエンド & API',
+      'skills.cat2_icon': '⚙️',
+      'skills.flask': 'Flask / FastAPI',
+      'skills.python': 'Python',
+      'skills.rest': 'REST API デザイン',
+      'skills.sql': 'SQL (MySQL / SQLite)',
+      'skills.firebase': 'Firebase / Firestore',
+      'skills.cat3_name': 'デプロイメント & クラウド',
+      'skills.cat3_icon': '🚀',
+      'skills.render': 'Render / Vercel',
+      'skills.aws': 'AWS (EC2, S3, Lambda)',
+      'skills.docker': 'Docker',
+      'skills.sagemaker': 'AWS SageMaker',
+      'skills.k8s': 'Kubernetes',
+      'skills.cat4_name': 'LLM エコシステム',
+      'skills.cat4_icon': '🔗',
+      'skills.openai': 'OpenAI API',
+      'skills.langchain': 'LangChain',
+      'skills.huggingface': 'HuggingFace',
+      'skills.llama': 'LLaMA / オープンモデル',
+      'skills.prompt': 'プロンプトエンジニアリング',
+      
+      // Thinking Section
+      'thinking.label': 'エンジニアリングの深さ',
+      'thinking.title': 'どのように',
+      'thinking.title_em': '考えるか',
+      'thinking.card1_num': '01',
+      'thinking.card1_title': 'AI システムの設計方法',
+      'thinking.card1_step1': '問題の枠組みから開始 — 実際に解決しようとしている障害モードは何か?',
+      'thinking.card1_step2': 'ML vs ルールベース: エッジケースが列挙可能である場合、ルールが勝つ',
+      'thinking.card1_step3': 'パイプラインをまず構築し、その中のモデルを最適化する',
+      'thinking.card1_step4': '劣化のため設計 — モデルが間違った場合はどうなるか?',
+      'thinking.card1_step5': '確率層を追加する前に、決定論的ベースラインを出荷する',
+      'thinking.card2_num': '02',
+      'thinking.card2_title': 'LLM の幻覚処理方法',
+      'thinking.card2_step1': '直接生成ではなくツール呼び出し: 事実を計算し、説明しないでください',
+      'thinking.card2_step2': 'ライブデータソースでレスポンスを根拠付ける — 生成前の検索',
+      'thinking.card2_step3': '検証レイヤー: 構造化出力を解析、範囲をチェック、グレースフルにフォールバック',
+      'thinking.card2_step4': '「思考」を「出力」から分離 — 構造化推論プロンプト',
+      'thinking.card2_step5': 'ハッピーパスだけでなく、敵対入力でテストする',
+      'thinking.card3_num': '03',
+      'thinking.card3_title': '推論パフォーマンスの最適化方法',
+      'thinking.card3_step1': '最初にプロファイル — レイテンシはほぼ常に、あなたが考えている場所にはない',
+      'thinking.card3_step2': 'GPU バッチ: 複数のリクエストをキュー、モデル読み込み時間を償却',
+      'thinking.card3_step3': '静的コンテンツの埋め込みをキャッシュ — 再計算を回避',
+      'thinking.card3_step4': 'ハードウェアをスケーリングする前にモデル量子化 (低コスト優先)',
+      'thinking.card3_step5': '本番環境でコールドスタート vs ウォームレイテンシを個別に監視',
+      'thinking.card4_num': '04',
+      'thinking.card4_title': 'Flask vs FastAPI — いつ、なぜ',
+      'thinking.card4_step1': 'Flask 素早いプロトタイプ、AI デモアプリ、Jinja2 サーバー側レンダリング用',
+      'thinking.card4_step2': 'FastAPI 非同期ML推論エンドポイント、型安全API、高スループット用',
+      'thinking.card4_step3': 'Flask のシンプルさにより、同時実行がボトルネックでない場合のオーバーヘッド回避',
+      'thinking.card4_step4': 'FastAPI の Pydantic モデルはスキーマコントラクトを強制 — 本番環境で重要',
+      'thinking.card4_step5': '正しい選択はベンチマークではなく、チームに依存する',
+      
+      // Experience Section
+      'experience.label': '職務経歴',
+      'experience.title': 'どこで',
+      'experience.title_em': '働いたか',
+      'exp1.date': '2025年7月 – 2025年11月',
+      'exp1.badge': 'ビジネスアナリスト',
+      'exp1.company': 'ICICI銀行',
+      'exp1.role': 'ビジネスアナリスト — コーポレートヘルスケア',
+      'exp1.bullet1': '10社以上のコーポレートヘルスケアクライアントポートフォリオ(約 $500K+ 相当) を管理。財務諸表と運用データを分析。',
+      'exp1.bullet2': '市場とクライアント分析を実施して相互販売機会を特定。収益成長戦略を直接支援。',
+      'exp1.bullet3': 'クライアントポートフォリオデータを体系化して収益性の洞察を導出。優先順位付けと意思決定効率を改善。',
+      'exp2.date': '2025年1月 – 2025年2月',
+      'exp2.badge': 'AI インターン',
+      'exp2.company': 'GenScriptAI',
+      'exp2.role': 'AI インターン — マルチモーダル生成',
+      'exp2.bullet1': 'LLM と TTS モデルを使用してテキストからオーディオを生成するエンドツーエンド AI パイプラインを構築。プロンプトエンジニアリングで一貫性を向上。',
+      'exp2.bullet2': 'LLM、拡散モデル、オーディオ合成を組み合わせてテキストからビデオ作成を自動化するマルチモーダルシステムを開発。',
+      'exp2.bullet3': 'GPU アクセラレーションで画像生成を最適化  — バッチ処理による推論時間を ~5 分から ~15 秒に短縮 (20倍高速化)。',
+      'exp2.bullet4': 'Flask ベースの API をデプロイして生成ワークフローを管理。スケーラブルなマルチパイプライン実行を実現。',
+      'exp3.date': '2024年5月 – 2024年7月',
+      'exp3.badge': 'テクノロジーインターン',
+      'exp3.company': 'ジンダル スチール リミテッド',
+      'exp3.role': 'テクノロジー インターン — ML & 最適化',
+      'exp3.bullet1': '大規模運用データを処理  — データのクリーニング、機能エンジニアリング、EDA を実施。主要パフォーマンスドライバーを特定。',
+      'exp3.bullet2': 'R² ≈ 0.85 を達成する ML モデルを構築。システム出力の変動性を大幅に低減。',
+      'exp3.bullet3': '入出力分析を通じて 10～15% の最適化機会を特定するデータドリブン効率ツールを開発。',
+      'exp3.bullet4': '時系列トレンドを分析してシステム効率に影響するパターンを検出。データドリブン意思決定を支援。',
+      
+      // Achievements Section
+      'achievements.label': ' 受賞 & 認定',
+      'achievements.title': '受賞',
+      'achievements.title_em': 'と',
+      'achievements.title_em2': 'アワード',
+      'ach1.title': 'NPCI Fintech ハッカソン ファイナリスト',
+      'ach1.sub': 'インド国立決済公社',
+      'ach1.icon': '🏆',
+      'ach2.title': 'IIT Kharagpur AI-volution — TOP 8',
+      'ach2.sub': '全国 800 以上のチームの中から',
+      'ach2.icon': '🥇',
+      'ach3.title': 'ディレクターズアワード受賞者',
+      'ach3.sub': 'ベストパフォーマー — コンテンツチームリード、カウンセリングセル',
+      'ach3.icon': '🎖️',
+      'ach4.title': 'インバウンドコーディネーター',
+      'ach4.sub': '国際関係セル、IIT ハイデラバード',
+      'ach4.icon': '🌐',
+      
+      // About Section
+      'about.title': 'AI を構築している',
+      'about.title_em': 'もの',
+      'about.title_em2': 'が本番環境で',
+      'about.p1': '2021～2025 年の IIT ハイデラバード B.Tech 卒業生で、エンドツーエンドの AI エンジニアリングに深く焦点を当てています。私は研究者ではなく、エンジニアです。ノートブックで動作するモデルと実ユーザーに対応するシステムのギャップを気にしています。',
+      'about.p2': 'LLM アプリケーション、マルチモーダル AI、本番環境対応 ML システム、フルスタック開発での経験があります。GenScriptAI で推論パイプラインをデプロイし、Jindal Steel で産業最適化の ML モデルを構築し、複数のライブ Web アプリケーションをリリースしました。',
+      'about.p3': 'AI エンジニアの職を目指しています。モデル選択から本番環境へのデプロイまで、スタック全体を管理できる会社を探しています。AI がアフターソートではなく、コア製品として構築されている会社でです。',
+      'about.chip1': 'LLM システム',
+      'about.chip2': 'ML パイプライン',
+      'about.chip3': 'API エンジニアリング',
+      'about.chip4': 'クラウド デプロイメント',
+      'about.chip5': 'マルチモーダル AI',
+      'about.chip6': 'RAG アーキテクチャ',
+      'about.initials': 'CK',
+      'about.iit': 'IIT Hyderabad · 8.54 GPA',
+      
+      // Contact Section
+      'contact.label': 'お問い合わせ',
+      'contact.title': 'なにか',
+      'contact.title_em': 'を',
+      'contact.title_em2': '一緒に作ろう',
+      'contact.desc': 'AI エンジニアのポジションを積極的に探しています。インテリジェントシステムを構築していて、アーキテクチャと精度の両方について同じくらい気になる人が必要な場合  — 話をしましょう。',
+      'contact.email': 'chaitanyakumar160@gmail.com',
+      'contact.linkedin': 'LinkedIn',
+      'contact.github': 'GitHub',
+      'contact.phone': '+91 78381 67243',
+      
+      // Footer
+      'footer.name': 'チャイタニヤ クマール',
+      'footer.role': 'AI エンジニア · IIT ハイデラバード · 2025',
+      'footer.tagline': 'テンプレートではなく、精密で構築。',
+    }
+  };
+
+  // ========== LANGUAGE SWITCHING FUNCTION ==========
+  let currentLanguage = 'en';
+  
+  function switchLanguage(lang) {
+    currentLanguage = lang;
+    document.documentElement.lang = lang;
+    
+    // Fade effect
+    document.body.style.opacity = '0.7';
+    
+    setTimeout(() => {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update lang toggle button active state
+      const toggle = document.getElementById('langToggle');
+      if (toggle) {
+        toggle.classList.remove('active-en', 'active-jp');
+        toggle.classList.add(lang === 'en' ? 'active-en' : 'active-jp');
+      }
+      
+      document.body.style.opacity = '1';
+    }, 150);
+  }
+  
+  // Attach language toggle button event listener when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+      // Initialize active state
+      langToggle.classList.add('active-en');
+      
+      // Attach click listener
+      langToggle.addEventListener('click', function() {
+        const newLang = currentLanguage === 'en' ? 'ja' : 'en';
+        switchLanguage(newLang);
+      });
+    }
+  });
+
+  // ========== REST OF EXISTING SCRIPTS BELOW ==========
+
   function filterProjects(tag) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
